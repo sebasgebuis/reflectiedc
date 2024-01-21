@@ -1,13 +1,46 @@
-const All_Details = document.querySelectorAll('details');
+const headerButton = document.querySelector('header button');
+const headerNav = document.querySelector('header nav');
 
-All_Details.forEach(deet=>{
-  deet.addEventListener('toggle', toggleOpenOneOnly)
-})
+headerButton.onclick = showHeaderNav;
 
-function toggleOpenOneOnly(e) {
-  if (this.open) {
-    All_Details.forEach(deet=>{
-      if (deet!=this && deet.open) deet.open = false
-    });
-  }
+function showHeaderNav() {
+    headerNav.classList.toggle('show');
 }
+
+// Fetch all the details element.
+const details = document.querySelectorAll("details");
+
+console.log(details)
+
+// Add the onclick listeners.
+details.forEach((targetDetail) => {
+    targetDetail.addEventListener("click", () => {
+        // Close all the details that are not targetDetail.
+        details.forEach((detail) => {
+            if (detail !== targetDetail) {
+                detail.removeAttribute("open");
+            }
+        });
+    });
+});
+
+// Fetch all the button - summary elements.
+const buttons = document.querySelectorAll("main ul li button");
+// Add the onclick listeners.
+buttons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+        // Close all details elements
+
+        console.log(details[index])
+        // Open the corresponding details element
+        if (details[index].hasAttribute("open")) {
+            details[index].removeAttribute("open");
+        } else {
+            details.forEach(detail => detail.removeAttribute("open"));
+            details[index].setAttribute("open", "true");
+
+        }
+    });
+});
+
+
