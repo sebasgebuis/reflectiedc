@@ -523,3 +523,10 @@ main.portfolio > nav {
         padding: .5em 1.5em 0 .5em;
         }
     }
+
+.poll {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
